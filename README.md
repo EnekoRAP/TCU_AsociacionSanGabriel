@@ -4,5 +4,5 @@
 
 >[!NOTE]
 >**Collaborator (main developer)** 🧑🏻‍💻👤
->Cristopher Rodríguez Fernández
+>- Cristopher Rodríguez Fernández
 ***
