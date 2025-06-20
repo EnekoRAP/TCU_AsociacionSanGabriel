@@ -3,6 +3,6 @@
 ⛔🛠️Page Under Construction🛠️⛔
 
 >[!NOTE]
->**Collaborator (main developer)** 🧑🏻‍💻👤
->- Cristopher Rodríguez Fernández
+>**Project Collaborator** 🧑🏻‍💻👤 <br>
+>Cristopher Rodríguez Fernández **(main developer)**
 ***
