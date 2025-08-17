@@ -70,3 +70,15 @@ main > * {
 #tablaUsuarios tbody tr:hover {
     background: #e7f7f5;
 }
+
+footer {
+    background-color: #20b2aa;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 3px 0;
+}

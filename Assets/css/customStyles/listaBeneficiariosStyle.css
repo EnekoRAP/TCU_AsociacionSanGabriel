@@ -13,7 +13,6 @@ body {
 }
 
 main {
-    flex: 1;
     background: url("../../img/backgrounds/background1.jpg") center no-repeat;
     background-size: cover;
     min-height: 80vh;
@@ -34,24 +33,42 @@ main::before {
     z-index: 1;
 }
 
-main>* {
+main > * {
     position: relative;
     z-index: 2;
 }
 
 .card {
     padding: 2rem;
-    margin-top: 2rem;
     width: 100%;
-    max-width: 800px;
+    max-width: 1500px;
     border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
 }
 
-.btn-success {
+.logo {
+    width: 150px;
+    display: block;
+    margin: 0 auto 1rem auto;
+}
+
+.btn-primary {
     background-color: #17847e;
     border-color: #17847e;
+}
+
+#tablaBeneficiarios thead th {
+    background-color: #20b2aa !important;
+    color: #fff !important;
+    border-color: #198c85 !important;
+}
+
+#tablaBeneficiarios tbody tr:nth-child(odd) {
+    background: #f0fbfa;
+}
+
+#tablaBeneficiarios tbody tr:hover {
+    background: #e7f7f5;
 }
 
 footer {
