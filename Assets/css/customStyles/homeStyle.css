@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100dvh;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+main {
+    flex: 1;
+    background: url("../../img/backgrounds/background1.jpg") center center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+}
+
+.hero-content h1 {
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.hero-content .btn {
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    background-color: #20b2aa;
+    border: none;
+    color: white;
+}
+
+.hero-content .btn:hover {
+    background-color: #198c85;
+}
+
+footer {
+    background-color: #20b2aa;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 3px 0;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
