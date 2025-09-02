@@ -16,7 +16,7 @@ body {
 }
 
 main {
-    background: url("../../img/backgrounds/background1.jpg") center no-repeat;
+    background: url("../../img/background.jpg") center no-repeat;
     background-size: cover;
     min-height: 80vh;
     position: relative;
@@ -55,7 +55,7 @@ main>* {
     border-color: #17847e;
 }
 
-#tablaGrupos thead th {
+#tablaProgramas thead th {
     background-color: #20b2aa !important;
     color: #fff !important;
     border-color: #198c85 !important;
