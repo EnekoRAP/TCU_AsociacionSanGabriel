@@ -14,7 +14,7 @@ body {
 
 main {
     flex: 1;
-    background: url("../../img/backgrounds/background1.jpg") center no-repeat;
+    background: url("../../img/background.jpg") center no-repeat;
     background-size: cover;
     min-height: 80vh;
     position: relative;
