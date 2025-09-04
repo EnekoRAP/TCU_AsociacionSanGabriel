@@ -10,7 +10,7 @@
     <title>TCU_AsociacionSanGabriel</title>
 
     <link href="../../Assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../Assets/css/customStyles/listaGruposStyle.css" rel="stylesheet">
+    <link href="../../Assets/css/customStyles/listaProgramasStyle.css" rel="stylesheet">
     <link href="../../Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
@@ -40,17 +40,16 @@
    <main>
         <div class="card p-4 shadow-lg mb-5">
             <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo" class="d-block mx-auto mb-3" style="width: 150px;">
-            <h2 class="fw-bold text-center mb-3">Lista de Grupos</h2>
+            <h2 class="fw-bold text-center mb-3">Lista de Programas</h2>
 
             <div class="mb-3 text-end">
-                <a href="#" class="btn btn-success">+ Agregar Grupo</a>
+                <a href="#" class="btn btn-success">+ Agregar Programa</a>
             </div>
 
             <div class="table-responsive">
-                <table id="tablaGrupos" class="table table-striped table-hover">
+                <table id="tablaProgramas" class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Código</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Estado</th>
@@ -59,9 +58,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>E-14</td>
-                            <td>Leones</td>
-                            <td>Niños entre 7 y 12 años</td>
+                            <td>PANI</td>
+                            <td>Niños con ezcasos recursos</td>
                             <td>
                                 <span class="">
                                     Activo
@@ -75,7 +73,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="text-center">Sin grupos</td>
+                            <td colspan="4" class="text-center">Sin grupos</td>
                         </tr>
                     </tbody>
                 </table>
@@ -87,7 +85,7 @@
         <p><strong>Provincia:</strong> Heredia </p>
         <p><strong>Cantón:</strong> Santa Bárbara </p>
         <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> - </p>
+        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
         <p><strong>Teléfono:</strong> 8455 5224 </p>
         <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
         <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
@@ -100,7 +98,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#tablaGrupos').DataTable({
+            $('#tablaProgramas').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/2.1.8/i18n/es-ES.json', 
                 },

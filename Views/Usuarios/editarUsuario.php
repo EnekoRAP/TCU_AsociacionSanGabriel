@@ -9,7 +9,7 @@
     <title>TCU_AsociacionSanGabriel</title>
 
     <link href="../../Assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../Assets/css/customStyles/editarBeneficiarioStyle.css" rel="stylesheet">
+    <link href="../../Assets/css/customStyles/editarUsuarioStyle.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
@@ -38,18 +38,17 @@
     <main>
         <div class="card">
             <h3 class="text-center mb-4" style="color: #20b2aa; font-weight: 600;">
-                <i class="fas fa-user-edit me-2"></i>Editar Beneficiario
+                <i class="fas fa-user-edit me-2"></i>Editar Usuario
             </h3>
             
             <div class="alert alert-danger">Error</div>
 
             <form method="POST">
-
                 <div class="mb-3">
                     <label class="form-label">Identificación</label>
                     <input type="text" name="identificacion" class="form-control" value="" required>
                 </div>
-                
+
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <input type="text" name="nombre" class="form-control" value="" required>
@@ -61,76 +60,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
-                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required value="">
+                    <label class="form-label">Correo</label>
+                    <input type="email" name="correo" class="form-control" value="" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Edad</label>
-                    <input type="number" name="edad" class="form-control" value="" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Género</label>
-                    <select name="genero" class="form-select" required>
-                        <option value="">
-                            Seleccione un rol
-                        </option>
+                    <label class="form-label">Rol</label>
+                    <select name="id_rol" class="form-select" required>
                         <option value="">
                         </option>
                     </select>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Alergias</label>
-                    <input type="text" name="alergias" class="form-control" value="" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Medicamentos</label>
-                    <input type="text" name="medicamentos" class="form-control" value="" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="fecha_ingreso" class="form-label">Fecha Ingreso</label>
-                    <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" required value="">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Encargado</label>
-                    <input type="text" name="encargado" class="form-control" value="" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Contacto</label>
-                    <input type="number" name="contacto" class="form-control" value="" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Pago</label>
-                    <input type="number" name="pago" class="form-control" value="" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Programa</label>
-                    <select name="id_programa" class="form-select" required>
-                        <option value="">
-                            Seleccione un programa
-                        </option>
-                        <option value="">
-                        </option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Grupo</label>
-                    <select name="id_grupo" class="form-select" required>
-                        <option value="">
-                            Seleccione un grupo
-                        </option>
-                        <option value="">
-                        </option>
-                    </select>
+                <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" name="estado" id="estado">
+                    <label class="form-check-label" for="estado">Activo</label>
                 </div>
 
                 <div class="d-flex gap-2">
@@ -141,7 +85,6 @@
                         <i class="fa-solid fa-ban me-1"></i> Cancelar
                     </a>
                 </div>
-
             </form>
         </div>
     </main>
@@ -150,7 +93,7 @@
         <p><strong>Provincia:</strong> Heredia </p>
         <p><strong>Cantón:</strong> Santa Bárbara </p>
         <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> - </p>
+        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
         <p><strong>Teléfono:</strong> 8455 5224 </p>
         <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
         <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>

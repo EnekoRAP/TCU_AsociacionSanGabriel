@@ -10,7 +10,7 @@
     <title>TCU_AsociacionSanGabriel</title>
 
     <link href="../../Assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../Assets/css/customStyles/listaBeneficiariosStyle.css" rel="stylesheet">
+    <link href="../../Assets/css/customStyles/listaGruposStyle.css" rel="stylesheet">
     <link href="../../Assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
@@ -37,62 +37,45 @@
         </div>
     </nav>
 
-    <main>
+   <main>
         <div class="card p-4 shadow-lg mb-5">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo" class="logo">
-            <h2 class="fw-bold text-center mb-3">Lista de Beneficiarios</h2>
-            
+            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo" class="d-block mx-auto mb-3" style="width: 150px;">
+            <h2 class="fw-bold text-center mb-3">Lista de Grupos</h2>
+
             <div class="mb-3 text-end">
-                <a href="#" class="btn btn-success">+ Agregar Beneficiario</a>
+                <a href="#" class="btn btn-success">+ Agregar Grupo</a>
             </div>
-            
+
             <div class="table-responsive">
-                <table id="tablaBeneficiarios" class="table table-striped table-hover">
+                <table id="tablaGrupos" class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Identificación</th>
+                            <th>Código</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Fecha Nacimiento</th>
-                            <th>Edad</th>
-                            <th>Género</th>
-                            <th>Alergias</th>
-                            <th>Medicamentos</th>
-                            <th>Fecha Ingreso</th>
-                            <th>Encargado</th>
-                            <th>Contacto</th>
-                            <th>Pago</th>
-                            <th>Programa</th>
-                            <th>Grupo</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>403020337</td>
-                            <th>Génesis</th>
-                            <th>Araya Araya</th>
-                            <th>2013-05-18</th>
-                            <th>12</th>
-                            <th>Femenino</th>
-                            <th>No</th>
-                            <th>No</th>
-                            <th>2022-01-04</th>
-                            <th>Yuliana Araya Brenes</th>
-                            <th>61319057</th>
-                            <th>$</th>
-                            <th>PANI</th>
-                            <th>Leones</th>
+                            <td>E-14</td>
+                            <td>Leones</td>
+                            <td>Niños entre 7 y 12 años</td>
+                            <td>
+                                <span class="">
+                                    Activo
+                                </span>
+                            </td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
-                                    <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                                    <a href="#" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>
+                                    <a href="" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este programa?')">Eliminar</a>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="15" class="text-center">No hay usuarios registrados</td>
+                            <td colspan="5" class="text-center">Sin grupos</td>
                         </tr>
                     </tbody>
                 </table>
@@ -104,7 +87,7 @@
         <p><strong>Provincia:</strong> Heredia </p>
         <p><strong>Cantón:</strong> Santa Bárbara </p>
         <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> - </p>
+        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
         <p><strong>Teléfono:</strong> 8455 5224 </p>
         <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
         <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
@@ -117,7 +100,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#tablaBeneficiarios').DataTable({
+            $('#tablaGrupos').DataTable({
                 language: {
                     url: '//cdn.datatables.net/plug-ins/2.1.8/i18n/es-ES.json', 
                 },

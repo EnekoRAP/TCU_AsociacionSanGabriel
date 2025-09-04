@@ -8,9 +8,9 @@
     <meta name="author" content="">
 
     <title>TCU_AsociacionSanGabriel</title>
-    
+
     <link href="../../Assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../Assets/css/customStyles/agregarGrupoStyle.css" rel="stylesheet">
+    <link href="../../Assets/css/customStyles/agregarProgramaStyle.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
@@ -41,7 +41,7 @@
         <div class="container py-4">
             <div class="text-center mb-4">
                 <h1 class="fw-bold">Gestión de Grupos</h1>
-                <p class="lead">Agregá, editá o eliminá los grupos disponibles de la asociación</p>
+                <p class="lead">Agregá, editá o eliminá los programas disponibles de la asociación</p>
             </div>
 
             <div class="card p-4 shadow-lg mb-5">
@@ -49,11 +49,6 @@
                     <input type="hidden" id="id_grupo" name="id_grupo" />
                     
                     <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo" class="logo">
-                    
-                    <div class="mb-3">
-                        <label for="codigo" class="form-label">Código del Grupo</label>
-                        <input type="text" class="form-control" id="codigo" name="codigo" required>
-                    </div>
                     
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
@@ -70,17 +65,17 @@
                         <label class="form-check-label" for="estado">Grupo Activo</label>
                     </div>
                     
-                    <button type="submit" class="btn btn-success w-100">Guardar Grupo</button>
+                    <button type="submit" class="btn btn-success w-100">Guardar Programa</button>
                 </form>
             </div>
         </div>
-  </main>
+    </main>
 
     <footer>
         <p><strong>Provincia:</strong> Heredia </p>
         <p><strong>Cantón:</strong> Santa Bárbara </p>
         <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> - </p>
+        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
         <p><strong>Teléfono:</strong> 8455 5224 </p>
         <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
         <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
@@ -89,21 +84,20 @@
     <script src="../../Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        let grupos = JSON.parse(localStorage.getItem('grupos')) || [];
+        let programas = JSON.parse(localStorage.getItem('programas')) || [];
         
-        function renderGrupos() {
-            const tbody = document.getElementById(tablaGrupos);
+        function renderProgramas() {
+            const tbody = document.getElementById(tablaProgramas);
             tbody.innerHTML = '';
-            grupos.array.forEach((g, i) => {
+            programas.array.forEach((p, i) => {
                 const row = `
                     <tr>
-                        <td>${g.Codigo}</td>
-                        <td>${g.Nombre}</td>
-                        <td>${g.Descripcion}</td>
-                        <td>${g.Estado ? 'Sí' : 'No'}</td>
+                        <td>${p.Nombre}</td>
+                        <td>${p.Descripcion}</td>
+                        <td>${p.Estado ? 'Sí' : 'No'}</td>
                         <td>
-                            <button onclick="editarGrupo(${i})">Editar</button>
-                            <button onclick="borrarGrupo(${i})">Eliminar</button>
+                            <button onclick="editarPrograma(${i})">Editar</button>
+                            <button onclick="borrarPrograma(${i})">Eliminar</button>
                         </td>
                     </tr>
                 `;
@@ -111,42 +105,40 @@
             });
         }
         
-        document.getElementById('formGrupo').addEventListener('submit', e => {
+        document.getElementById('formPrograma').addEventListener('submit', e => {
             e.preventDefault();
-            const id = document.getElementById('GrupoID').value;
-            const grupo = {
-                Codigo: document.getElementById('Codigo').value,
+            const id = document.getElementById('ProgramaID').value;
+            const programa = {
                 Nombre: document.getElementById('Nombre').value,
                 Descripcion: document.getElementById('Descripcion').value,
                 Estado: document.getElementById('Estado').checked
             };
             
             if (id == '') {
-                grupos.push(grupo);
+                programas.push(programa);
             } else {
-                grupos[id] = grupo;
+                programas[id] = programa;
             }
-            localStorage.setItem('grupos', JSON.stringify(grupos));
-            renderGrupos();
+            localStorage.setItem('programas', JSON.stringify(programas));
+            renderProgramas();
             e.target.reset();
         });
         
-        function editarGrupo(index) {
-            const g = grupos[index];
-            document.getElementById('GrupoID').value = index;
-            document.getElementById('Codigo').value = g.Codigo;
-            document.getElementById('Nombre').value = g.Nombre;
-            document.getElementById('Descripcion').value = g.Descripcion;
-            document.getElementById('Estado').checked = g.Estado;
+        function editarPrograma(index) {
+            const p = programas[index];
+            document.getElementById('ProgramaID').value = index;
+            document.getElementById('Nombre').value = p.Nombre;
+            document.getElementById('Descripcion').value = p.Descripcion;
+            document.getElementById('Estado').checked = p.Estado;
         }
         
-        function borrarGrupo(index) {
-            grupos.splice(index, 1);
-            localStorage.setItem('grupos', JSON.stringify(grupos));
-            renderGrupos();
+        function borrarPrograma(index) {
+            programas.splice(index, 1);
+            localStorage.setItem('programas', JSON.stringify(programas));
+            renderProgramas();
         }
         
-        renderGrupos();
+        renderProgramas();
     </script>
 
 </body>
