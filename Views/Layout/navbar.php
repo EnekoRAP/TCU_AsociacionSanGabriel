@@ -8,11 +8,11 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             
-            <li class="nav-item"><a class="nav-link" href="#">Beneficiarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Grupos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Programas</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Usuarios</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Soporte</a></li>
+            <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
+            <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
+            <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
         
         </ul>
         <a href="#" class="btn btn-outline-danger btn-sm">
