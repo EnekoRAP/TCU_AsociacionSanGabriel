@@ -1,23 +1,31 @@
-<html lang="en">
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
 
-    <title>TCU_AsociacionSanGabriel</title>
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
-    <link href="../../Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-    <link href="../../Assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../../Assets/css/customStyles/crearUsuarioStyle.css" rel="stylesheet">
-</head>
+if ($id <= 0) {
+    exit("ID Inválido");
+}
 
-<body>
-    
-</body>
+$query = "DELETE FROM tbl_programas WHERE id_programa = ?";
+$stmt = $cn->prepare($query);
+$stmt->bind_param("i", $id);
 
-</html>
+if ($stmt->execute()) {
+    cerrarConexion($cn);
+    echo '<script>
+            alert("El programa se eliminó correctamente.");
+            window.location.href = "listaProgramas.php";
+          </script>';
+    exit;
+} else {
+    $error = $stmt->error;
+    cerrarConexion($cn);
+    exit("Error al emliminar: $error");
+}
+?>

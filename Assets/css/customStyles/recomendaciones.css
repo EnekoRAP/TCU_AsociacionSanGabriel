@@ -1,4 +1,11 @@
+html, body {
+    height: 100%;
+}
+
 body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     font-family: 'Poppins', sans-serif;
     background: #f7f9fb;
 }
@@ -10,6 +17,10 @@ body {
 
 .navbar-brand img {
     height: 50px;
+}
+
+main {
+    flex: 1;
 }
 
 .page-header {
@@ -31,21 +42,9 @@ body {
     color: #20b2aa;
 }
 
-.faq-search {
-    max-width: 820px;
-    margin: 12px auto 25px;
-}
-
 .accordion {
-    max-width: 900px;
+    max-width: 720px;
     margin: 0 auto 40px;
-}
-
-.accordion-item {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
-    margin-bottom: 12px;
 }
 
 .accordion-button:focus {
@@ -57,14 +56,21 @@ body {
     color: #0f6f6a;
 }
 
+.accordion-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+    margin-bottom: 12px;
+}
+
 footer {
-    background: #20b2aa;
-    color: #fff;
-    padding: 20px;
+    background-color: #20b2aa;
+    color: white;
+    padding: 12px 20px;
     text-align: center;
+    font-size: 0.9rem;
 }
 
 footer p {
-    margin: 4px 0;
-    font-size: .95rem;
+    margin: 3px 0;
 }

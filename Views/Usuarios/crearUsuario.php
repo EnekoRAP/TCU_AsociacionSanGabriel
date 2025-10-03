@@ -1,3 +1,49 @@
+<?php
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
+
+$identificacion = "";
+$nombre = "";
+$apellidos = "";
+$correo = "";
+$contrasenna = "";
+$estado = 1;
+$mensajeError = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $identificacion = trim($_POST['identificacion']);
+    $nombre = trim($_POST['nombre']);
+    $apellidos = trim($_POST['apellidos']);
+    $correo = trim($_POST['correo']);
+    $contrasenna = trim($_POST['contrasenna']);
+    $rolSeleccionado = (int) $_POST['id_rol'];
+    $estado = isset($_POST['estado']) ? 1 : 0;
+    $fecha = date('Y-m-d H:i:s');
+
+    if ($identificacion === "" || $nombre === "" || $apellidos === "" || $correo === "" || $contrasenna === "" || $rolSeleccionado <= 0) {
+        $mensajeError = "Todos los campos son obligatorios. ";
+    } else {
+        $query = "INSERT INTO tbl_usuarios (identificacion, nombre, apellidos, correo, contrasenna, id_rol, estado, fecha_registro)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $cn->prepare($query);
+        $stmt->bind_param("sssssiis", $identificacion, $nombre, $apellidos, $correo, $contrasenna, $rolSeleccionado, $estado, $fecha);
+
+        if ($stmt->execute()) {
+            cerrarConexion($cn);
+            echo '<script>
+                    alert("Usuario registrado correctamente.");
+                    window.location.href = "listaUsuarios.php";
+                  </script>';
+            exit;
+        } else {
+            $mensajeError = "Error al registrar el usuario: " . $stmt->error;
+        }
+    }
+}
+
+$roles = $cn->query("SELECT id_rol, nombre_rol FROM tbl_roles");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +63,8 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <a class="navbar-brand" href="../Home/home.php">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                
-                <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
-
-            </ul>
-        </div>
+    <nav>
+        <?php include '../Layout/Navbars/navbar2.php'; ?>
     </nav>
 
     <main>
@@ -43,33 +73,35 @@
                 <i class="fas fa-user-plus me-2"></i>Registrar Usuario
             </h3>
             
-            <div class="alert alert-danger">Error</div>
+            <?php if ($mensajeError): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($mensajeError) ?></div>
+            <?php endif; ?>
             
             <form method="POST">
 
                 <div class="mb-3">
                     <label class="form-label">Identificación</label>
-                    <input type="text" name="identificacion" class="form-control" value="" required>
+                    <input type="text" name="identificacion" class="form-control" value="<?= htmlspecialchars($identificacion) ?>" required>
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" value="" required>
+                    <input type="text" name="nombre" class="form-control" value="<?= htmlspecialchars($nombre) ?>" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Apellidos</label>
-                    <input type="text" name="apellidos" class="form-control" value="" required>
+                    <input type="text" name="apellidos" class="form-control" value="<?= htmlspecialchars($apellidos) ?>" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Correo</label>
-                    <input type="email" name="correo" class="form-control" value="" required>
+                    <input type="email" name="correo" class="form-control" value="<?= htmlspecialchars($correo) ?>" required>
                 </div>
                 
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <input type="password" name="contraseña" class="form-control" required>
+                    <input type="password" name="contrasenna" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
@@ -78,13 +110,16 @@
                         <option value="">
                             Seleccione un rol
                         </option>
-                        <option value="">
-                        </option>
+                        <?php while ($r = $roles->fetch_assoc()): ?>
+                            <option value="<?= $r['id_rol'] ?>" <?= ($rolSeleccionado ?? '') == $r['id_rol'] ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($r['nombre_rol']) ?>
+                            </option>
+                        <?php endwhile; ?>
                     </select>
                 </div>
                 
                 <div class="form-check form-switch mb-4">
-                    <input class="form-check-input" type="checkbox" name="estado" id="estado">
+                    <input class="form-check-input" type="checkbox" name="estado" id="estado" <?= $estado ? 'checked' : '' ?>>
                     <label class="form-check-label" for="estado">Activo</label>
                 </div>
 
@@ -92,7 +127,7 @@
                     <button type="submit" class="btn btn-success">
                         <i class="fa-solid fa-user-plus me-1"></i> Registrar
                     </button>
-                    <a href="../Usuarios/listaUsuarios.php" class="btn btn-secondary">
+                    <a href="listaUsuarios.php" class="btn btn-secondary">
                         <i class="fa-solid fa-ban me-1"></i> Cancelar
                     </a>
                 </div>
@@ -101,13 +136,7 @@
     </main>
 
     <footer>
-        <p><strong>Provincia:</strong> Heredia </p>
-        <p><strong>Cantón:</strong> Santa Bárbara </p>
-        <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-        <p><strong>Teléfono:</strong> 8455 5224 </p>
-        <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-        <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+        <?php include '../Layout/footer.php' ?>
     </footer>
 
     <script src="../../Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

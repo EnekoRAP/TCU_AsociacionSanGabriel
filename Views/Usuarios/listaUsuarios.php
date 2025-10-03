@@ -1,3 +1,16 @@
+<?php
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
+
+$query = "SELECT u.id_usuario, u.identificacion, u.nombre, u.apellidos, u.correo, r.nombre_rol, u.estado, u.fecha_registro
+          FROM tbl_usuarios u
+          JOIN tbl_roles r ON u.id_rol = r.id_rol
+          ORDER BY u.id_usuario DESC";
+
+$resultado = $cn->query($query);
+cerrarConexion($cn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +30,8 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <a class="navbar-brand" href="../Home/home.php">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-
-                <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
-
-            </ul>
-        </div>
+    <nav>
+        <?php include '../Layout/Navbars/navbar2.php' ?>
     </nav>
 
     <main>
@@ -61,25 +58,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>208600279</td>
-                            <td>Cristopher</td>
-                            <td>Rodríguez Fernández</td>
-                            <td>crodriguez@gmail.com</td>
-                            <td>2025-15-08</td>
-                            <td>Master</td>
-                            <td>Activo</td>
-                            <td>
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <a href="../Usuarios/editarUsuario.php" class="btn btn-primary btn-sm">Editar</a>
-                                    <a href="#" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="8" class="text-center">No hay usuarios registrados</td>
-                        </tr>
+                        <?php if ($resultado && $resultado->num_rows): ?>
+                            <?php while ($u = $resultado->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($u['identificacion']) ?></td>
+                                    <td><?= htmlspecialchars($u["nombre"]) ?></td>
+                                    <td><?= htmlspecialchars($u["apellidos"]) ?></td>
+                                    <td><?= htmlspecialchars($u["correo"]) ?></td>
+                                    <td><?= htmlspecialchars($u["nombre_rol"]) ?></td>
+                                    <td><?= $u["estado"] ? 'Activo' : 'Inactivo' ?></td>
+                                    <td><?= date("d/m/y", strtotime($u["fecha_registro"])) ?></td>
+                                    <td>
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <a href="editarUsuario.php?id=<?= $u['id_usuario'] ?>" class="btn btn-primary btn-sm">Editar</a>
+                                            <a href="eliminarUsuario.php?id=<?= $u['id_usuario'] ?>" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr><td colspan="6" class="text-center">No hay usuarios registrados</td></tr>
+                            <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -87,13 +87,7 @@
     </main>
 
     <footer>
-        <p><strong>Provincia:</strong> Heredia </p>
-        <p><strong>Cantón:</strong> Santa Bárbara </p>
-        <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-        <p><strong>Teléfono:</strong> 8455 5224 </p>
-        <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-        <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+        <?php include '../Layout/footer.php' ?>
     </footer>
     
     <script src="../../Assets/js/core/jquery-3.7.1.min.js"></script>

@@ -1,0 +1,70 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f7f9fb;
+}
+
+.navbar {
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .05);
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+.page-header {
+    padding: 40px 0 10px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.page-header p {
+    color: #666;
+    margin: 0;
+}
+
+.brand-accent {
+    color: #20b2aa;
+}
+
+.faq-search {
+    max-width: 820px;
+    margin: 12px auto 25px;
+}
+
+.accordion {
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+
+.accordion-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .05);
+    margin-bottom: 12px;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #e8f7f6;
+    color: #0f6f6a;
+}
+
+footer {
+    background-color: #20b2aa;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 3px 0;
+}
