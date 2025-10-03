@@ -1,3 +1,17 @@
+<?php 
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
+
+$query = "SELECT b.id_beneficiario, b.identificacion, b.nombre, b.apellidos, b.fecha_nacimiento, b.edad, b.alergias, b.medicamentos, b.fecha_ingreso, b.encargado, b.contacto, b.pago, p.nombre AS nombre_programa, g.nombre AS nombre_grupo
+          FROM tbl_beneficiarios b
+          LEFT JOIN tbl_programas p ON b.id_programa = p.id_programa
+          LEFT JOIN tbl_grupos g ON b.id_grupo = g.id_grupo
+          ORDER BY b.id_beneficiario DESC";
+
+$resultado = $cn->query($query);
+cerrarConexion($cn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +31,8 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <a class="navbar-brand" href="../Home/home.php">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                
-                <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
-
-            </ul>
-        </div>
+    <nav>
+        <?php include '../Layout/Navbars/navbar2.php' ?>
     </nav>
 
     <main>
@@ -43,7 +41,7 @@
             <h2 class="fw-bold text-center mb-3">Lista de Beneficiarios</h2>
             
             <div class="mb-3 text-end">
-                <a href="../Beneficiarios/agregarBeneficiario.php" class="btn btn-success">+ Agregar Beneficiario</a>
+                <a href="agregarBeneficiario.php" class="btn btn-success">+ Agregar Beneficiario</a>
             </div>
             
             <div class="table-responsive">
@@ -55,7 +53,6 @@
                             <th>Apellidos</th>
                             <th>Fecha Nacimiento</th>
                             <th>Edad</th>
-                            <th>Género</th>
                             <th>Alergias</th>
                             <th>Medicamentos</th>
                             <th>Fecha Ingreso</th>
@@ -68,32 +65,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>403020337</td>
-                            <th>Génesis</th>
-                            <th>Araya Araya</th>
-                            <th>2013-05-18</th>
-                            <th>12</th>
-                            <th>Femenino</th>
-                            <th>No</th>
-                            <th>No</th>
-                            <th>2022-01-04</th>
-                            <th>Yuliana Araya Brenes</th>
-                            <th>61319057</th>
-                            <th>$</th>
-                            <th>PANI</th>
-                            <th>Leones</th>
-                            <td>
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <a href="../Beneficiarios/editarBeneficiario.php" class="btn btn-primary btn-sm">Editar</a>
-                                    <a href="#" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">Eliminar</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="15" class="text-center">No hay usuarios registrados</td>
-                        </tr>
+                        <?php if ($resultado && $resultado->num_rows): ?>
+                            <?php while ($u = $resultado->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($u["identificacion"]) ?></td>
+                                    <td><?= htmlspecialchars($u["nombre"]) ?></td>
+                                    <td><?= htmlspecialchars($u["apellidos"]) ?></td>
+                                    <td><?= htmlspecialchars($u["fecha_nacimiento"]) ?></td>
+                                    <td><?= htmlspecialchars($u["edad"]) ?></td>
+                                    <td><?= htmlspecialchars($u["alergias"]) ?></td>
+                                    <td><?= htmlspecialchars($u["medicamentos"]) ?></td>
+                                    <td><?= htmlspecialchars($u["fecha_ingreso"]) ?></td>
+                                    <td><?= htmlspecialchars($u["encargado"]) ?></td>
+                                    <td><?= htmlspecialchars($u["contacto"]) ?></td>
+                                    <td>₡<?= number_format($u["pago"], 2) ?></td>
+                                    <td><?= htmlspecialchars($u["nombre_programa"]) ?></td>
+                                    <td><?= htmlspecialchars($u["nombre_grupo"]) ?></td>
+                                    <td>
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <a href="editarBeneficiario.php?id=<?= $u['id_beneficiario'] ?>" class="btn btn-primary btn-sm">Editar</a>
+                                            <a href="eliminarBeneficiario.php?id=<?= $u['id_beneficiario'] ?>" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('¿Seguro que deseas eliminar este beneficiario?')">Eliminar</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr><td colspan="14" class="text-center">No hay beneficiarios registrados</td></tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -101,13 +100,7 @@
     </main>
 
     <footer>
-        <p><strong>Provincia:</strong> Heredia </p>
-        <p><strong>Cantón:</strong> Santa Bárbara </p>
-        <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-        <p><strong>Teléfono:</strong> 8455 5224 </p>
-        <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-        <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+        <?php include '../Layout/footer.php' ?>
     </footer>
 
     <script src="../../Assets/js/core/jquery-3.7.1.min.js"></script>

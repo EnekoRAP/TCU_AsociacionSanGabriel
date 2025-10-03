@@ -1,9 +1,19 @@
+<?php
+$info = [
+    "Provincia" => "Heredia",
+    "Cantón" => "Santa Bárbara",
+    "Distrito" => "Jesús",
+    "Dirección" => "150 metros al Sur del EBAIS de Birrí",
+    "Teléfono" => "8455 5224",
+    "Correo" => "arcangelgabri17@outlook.com"
+];
+?>
+
 <footer>
-    <p><strong>Provincia:</strong> Heredia </p>
-    <p><strong>Cantón:</strong> Santa Bárbara </p>
-    <p><strong>Distrito:</strong> Jesús </p>
-    <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-    <p><strong>Teléfono:</strong> 8455 5224 </p>
-    <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-    <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+    <?php foreach ($info as $label => $value): ?>
+        <p><strong><?php echo $label; ?>:</strong> <?php echo $value; ?> </p>
+    <?php endforeach; ?>
+    <span>Copyright &copy;
+        Asociación San Gabriel Formación y Cuido de Niños <?php echo date("Y"); ?>
+    </span>
 </footer>

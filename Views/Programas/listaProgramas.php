@@ -1,3 +1,18 @@
+<?php
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
+
+$resultado = $cn->query("SELECT id_programa, nombre, descripcion, tipo, estado
+                         FROM tbl_programas
+                         ORDER BY id_programa DESC");
+
+if (!$resultado) {
+    echo "Error: " - $cn->error;
+}
+
+cerrarConexion($cn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +32,8 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <a class="navbar-brand" href="../Home/home.php">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-
-                <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
-
-            </ul>
-        </div>
+    <nav>
+        <?php include '../Layout/Navbars/navbar2.php' ?>
     </nav>
 
    <main>
@@ -52,29 +51,41 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Descripción</th>
+                            <th>Tipo</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>PANI</td>
-                            <td>Niños con ezcasos recursos</td>
-                            <td>
-                                <span class="">
-                                    Activo
-                                </span>
-                            </td>
-                            <td>
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <a href="../Programas/editarPrograma.php" class="btn btn-primary btn-sm">Editar</a>
-                                    <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este programa?')">Eliminar</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" class="text-center">Sin grupos</td>
-                        </tr>
+                        <?php if ($resultado && $resultado->num_rows): ?>
+                            <?php while ($u = $resultado->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($u["nombre"]) ?></td>
+                                    <td><?= htmlspecialchars($u["descripcion"]) ?></td>
+                                    <td><?= htmlspecialchars($u["tipo"]) ?></td>
+                                    <td>
+                                        <span class="badge bg-<?= $u["estado"] ? 'success' : 'secondary' ?>">
+                                            <?= $u["estado"] ? 'Activo' : 'Inactivo' ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex gap-2 justify-content-center">
+                                            <a href="editarPrograma.php?id=<?= $u['id_programa'] ?>"
+                                                class="btn btn-primary btn-sm">Editar
+                                            </a>
+                                            <a href="eliminarPrograma.php?id=<?= $u['id_programa'] ?>"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('¿Seguro que deseas eliminar este programa?')">Eliminar
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" class="text-center">Sin programas</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -82,13 +93,7 @@
     </main>
 
     <footer>
-        <p><strong>Provincia:</strong> Heredia </p>
-        <p><strong>Cantón:</strong> Santa Bárbara </p>
-        <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-        <p><strong>Teléfono:</strong> 8455 5224 </p>
-        <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-        <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+        <?php include '../Layout/footer.php' ?>
     </footer>
 
     <script src="../../Assets/js/core/jquery-3.7.1.min.js"></script>

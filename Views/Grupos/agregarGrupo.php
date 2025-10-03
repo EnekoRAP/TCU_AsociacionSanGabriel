@@ -1,3 +1,8 @@
+<?php
+$errores = isset($_GET['error']) ? explode('|', $_GET['error']) : [];
+$resultado = isset($_GET['success']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +22,8 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <a class="navbar-brand" href="../Home/home.php">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                
-                <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
-
-            </ul>
-        </div>
+    <nav>
+        <?php include '../Layout/Navbars/navbar3.php' ?>        
     </nav>
     
     <main class="shadow p-4">
@@ -45,7 +34,7 @@
             </div>
 
             <div class="card p-4 shadow-lg mb-5">
-                <form id="formGrupo" method="POST" action="">
+                <form id="formGrupo" method="POST" action="../../Controllers/grupoController.php">
                     <input type="hidden" id="id_grupo" name="id_grupo" />
                     
                     <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo" class="logo">
@@ -64,6 +53,22 @@
                         <label for="descripcion" class="form-label">Descripción</label>
                         <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="nivel" class="form-label">Nivel</label>
+                        <input type="text" class="form-control" id="nivel" name="nivel" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fecha_inicio" class="form-label">Fecha de Ingreso</label>
+                            <input type="date" class="form-control" id="fecha_inicio" name="fechaInicio" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="fecha_fin" class="form-label">Fecha de Salida</label>
+                            <input type="date" class="form-control" id="fecha_fin" name="fechaFin" required>
+                        </div>
+                    </div>
                     
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" name="estado" id="estado" value="1">
@@ -77,77 +82,10 @@
     </main>
 
     <footer>
-        <p><strong>Provincia:</strong> Heredia </p>
-        <p><strong>Cantón:</strong> Santa Bárbara </p>
-        <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-        <p><strong>Teléfono:</strong> 8455 5224 </p>
-        <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-        <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+        <?php include '../Layout/footer.php' ?>
     </footer>
 
     <script src="../../Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        let grupos = JSON.parse(localStorage.getItem('grupos')) || [];
-        
-        function renderGrupos() {
-            const tbody = document.getElementById(tablaGrupos);
-            tbody.innerHTML = '';
-            grupos.array.forEach((g, i) => {
-                const row = `
-                    <tr>
-                        <td>${g.Codigo}</td>
-                        <td>${g.Nombre}</td>
-                        <td>${g.Descripcion}</td>
-                        <td>${g.Estado ? 'Sí' : 'No'}</td>
-                        <td>
-                            <button onclick="editarGrupo(${i})">Editar</button>
-                            <button onclick="borrarGrupo(${i})">Eliminar</button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        }
-        
-        document.getElementById('formGrupo').addEventListener('submit', e => {
-            e.preventDefault();
-            const id = document.getElementById('GrupoID').value;
-            const grupo = {
-                Codigo: document.getElementById('Codigo').value,
-                Nombre: document.getElementById('Nombre').value,
-                Descripcion: document.getElementById('Descripcion').value,
-                Estado: document.getElementById('Estado').checked
-            };
-            
-            if (id == '') {
-                grupos.push(grupo);
-            } else {
-                grupos[id] = grupo;
-            }
-            localStorage.setItem('grupos', JSON.stringify(grupos));
-            renderGrupos();
-            e.target.reset();
-        });
-        
-        function editarGrupo(index) {
-            const g = grupos[index];
-            document.getElementById('GrupoID').value = index;
-            document.getElementById('Codigo').value = g.Codigo;
-            document.getElementById('Nombre').value = g.Nombre;
-            document.getElementById('Descripcion').value = g.Descripcion;
-            document.getElementById('Estado').checked = g.Estado;
-        }
-        
-        function borrarGrupo(index) {
-            grupos.splice(index, 1);
-            localStorage.setItem('grupos', JSON.stringify(grupos));
-            renderGrupos();
-        }
-        
-        renderGrupos();
-    </script>
 
 </body>
 

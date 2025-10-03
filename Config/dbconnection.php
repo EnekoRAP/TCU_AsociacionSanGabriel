@@ -1,29 +1,26 @@
 <?php
-require_once "global.php";
 
-class dbconnection {
-    private $conn;
+function abrirConexion() {
+    $host = "localhost";
+    $user = "root";
+    $password = "KeebleMayen26";
+    $db = "bd_sangabriel";
 
-    public function abrirConexion() {
-        $connectionString = [
-            "UID" => DB_USER_SQLSRV,
-            "PWD" => DB_PASSWORD_SQLSRV,
-            "Database" => DB_NAME_SQLSRV
-        ];
+    $conn = new mysqli($host, $user, $password, $db);
 
-        $this->conn = sqlsrv_connect(DB_SERVER_SQLSRV, $connectionString);
-
-        if ($this->conn === false) {
-            die("Error de conexión: " . print_r(sqlsrv_errors(), true));
-        }
-
-        return $this->conn;
+    if ($conn->connect_error) {
+        throw new Exception("Error de conexión a la base de datos: " . $conn->connect_error);
     }
 
-    public function cerrarConexion() {
-        if ($this->conn) {
-            sqlsrv_close($this->conn);
-        }
+    $conn->set_charset("utf8mb4");
+
+    return $conn;
+}
+
+function cerrarConexion($conn) {
+    if ($conn instanceof mysqli) {
+        $conn->close();
     }
 }
+
 ?>

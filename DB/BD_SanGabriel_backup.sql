@@ -1,79 +1,85 @@
-USE [master]
-GO
+CREATE DATABASE bd_sangabriel;
 
-CREATE DATABASE [BD_SanGabriel]
-GO
+USE bd_sangabriel;
 
-USE [BD_SanGabriel]
-GO
-
-CREATE TABLE [dbo].[TBL_Roles] (
-	[RolID]     [bigint] IDENTITY(1,1) NOT NULL,
-	[NombreRol] [varchar](50)          NOT NULL,
-	CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED ([RolID] ASC)
+CREATE TABLE tbl_roles (
+    id_rol INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_rol VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE [dbo].[TBL_Usuarios] (
-	[UsuarioID]      [bigint] IDENTITY(1,1) NOT NULL,
-	[Identificacion] [varchar](15)          NOT NULL,
-	[Nombre]         [varchar](50)          NOT NULL,
-	[Apellidos]      [varchar](100)         NOT NULL,
-	[Correo]         [varchar](100)         NOT NULL,
-	[Contrasenna]    [varchar](255)         NOT NULL,
-	[FechaRegistro]  [datetime]             DEFAULT CURRENT_TIMESTAMP,
-	[RolID]          [bigint]               NOT NULL,
-	[Estado]         [bit]                  NOT NULL,
-	CONSTRAINT [UQ_Usuario_Correo] UNIQUE ([Correo]),
-	CONSTRAINT [UQ_Usuario_Identificacion] UNIQUE ([Identificacion]),
-	CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED ([UsuarioID] ASC),
-	CONSTRAINT [FK_Usuario_Rol] FOREIGN KEY ([RolID]) REFERENCES [dbo].[TBL_Roles]([RolID])
+CREATE TABLE tbl_usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    identificacion VARCHAR(15) UNIQUE NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    contrasenna VARCHAR(255) NOT NULL,
+    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_rol INT,
+    estado BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (id_rol) REFERENCES tbl_roles(id_rol)
 );
 
-CREATE TABLE [dbo].[TBL_Beneficiarios] (
-	[BeneficiarioID]  [bigint] IDENTITY(1,1) NOT NULL,
-	[Identificacion]  [varchar](15)          NOT NULL,
-	[Nombre]          [varchar](50)          NOT NULL,
-	[Apellidos]       [varchar](100)         NOT NULL,
-	[FechaNacimiento] [date]                 NOT NULL,
-	[Edad]            [int]                  NOT NULL,
-	[Genero]          [varchar](10)          NOT NULL,
-	[Alergias]        [varchar](100)         NULL,
-	[Medicamentos]    [varchar](100)         NULL,
-	[FechaIngreso]    [datetime]             DEFAULT CURRENT_TIMESTAMP,
-	[Encargado]       [varchar](100)         NOT NULL,
-	[Contacto]        [varchar](50)          NOT NULL,
-	[Pago]            [decimal](10,2)        NULL,
-	[ProgramaID]      [bigint]               NOT NULL,
-	[GrupoID]         [bigint]               NOT NULL,
-	CONSTRAINT [PK_Beneficiarios] PRIMARY KEY CLUSTERED ([BeneficiarioID] ASC),
-	CONSTRAINT [FK_Beneficiario_Programa] FOREIGN KEY ([ProgramaID]) REFERENCES [dbo].[TBL_Programas]([ProgramaID]),
-	CONSTRAINT [FK_Beneficiario_Grupo] FOREIGN KEY ([GrupoID]) REFERENCES [dbo].[TBL_Grupos]([GrupoID])
+CREATE TABLE tbl_grupos (
+    id_grupo INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(10) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    nivel VARCHAR(50),
+    fecha_inicio DATE,
+    fecha_fin DATE,
+    estado BOOLEAN DEFAULT TRUE
 );
 
-CREATE TABLE [dbo].[TBL_Grupos] (
-	[GrupoID]        [bigint] IDENTITY(1,1) NOT NULL,
-	[Codigo]         [varchar](10)          NOT NULL,
-	[Nombre]         [varchar](50)          NOT NULL,
-	[Descripcion]    [varchar](max)         NOT NULL,
-	[Estado]         [bit]                  NOT NULL,
-	CONSTRAINT [PK_Grupos] PRIMARY KEY CLUSTERED ([GrupoID] ASC)
+CREATE TABLE tbl_programas (
+    id_programa INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    tipo VARCHAR(50),
+    estado BOOLEAN DEFAULT TRUE
 );
 
-CREATE TABLE [dbo].[TBL_Programas] (
-	[ProgramaID]     [bigint] IDENTITY(1,1) NOT NULL,
-	[Nombre]         [varchar](50)          NOT NULL,
-	[Descripcion]    [varchar](max)         NOT NULL,
-	[Estado]         [bit]                  NOT NULL,
-	CONSTRAINT [PK_Programas] PRIMARY KEY CLUSTERED ([ProgramaID] ASC)
+CREATE TABLE tbl_beneficiarios (
+    id_beneficiario INT AUTO_INCREMENT PRIMARY KEY,
+    identificacion VARCHAR(15) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    edad INT NOT NULL,
+    alergias VARCHAR(100),
+    medicamentos VARCHAR(100),
+    fecha_ingreso DATE NOT NULL,
+    encargado VARCHAR(100) NOT NULL,
+    contacto VARCHAR(50) NOT NULL,
+    pago DECIMAL(10,2),
+    id_programa INT,
+    id_grupo INT,
+    FOREIGN KEY (id_programa) REFERENCES tbl_programas(id_programa),
+    FOREIGN KEY (id_grupo) REFERENCES tbl_grupos(id_grupo)
 );
 
-CREATE TABLE [dbo].[TBL_AuditoriaErrores] (
-	[ErrorID]   [bigint] IDENTITY(1,1) NOT NULL,
-	[Accion]    [varchar](100)         NOT NULL,
-	[Origen]    [varchar](250)         NOT NULL,
-	[FechaHora] [datetime]             DEFAULT CURRENT_TIMESTAMP,
-	[Mensaje]   [varchar](max)         NOT NULL,
-	[UsuarioID] [bigint]               NOT NULL,
-	CONSTRAINT [PK_AuditoriaErrores] PRIMARY KEY CLUSTERED ([ErrorID] ASC),
-	CONSTRAINT [FK_Error_Usuario] FOREIGN KEY ([UsuarioID]) REFERENCES [dbo].[TBL_Usuarios]([UsuarioID])
+CREATE TABLE tbl_auditoria (
+    id_error INT AUTO_INCREMENT PRIMARY KEY,
+    accion VARCHAR(100),
+    origen VARCHAR(250),
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    mensaje TEXT,
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES tbl_usuarios(id_usuario)
 );
+
+INSERT INTO tbl_roles (nombre_rol) VALUES
+('Master'),
+('Admin');
+
+INSERT INTO tbl_usuarios (identificacion, nombre, apellidos, correo, contrasenna, fecha_registro, id_rol) VALUES
+('208600279', 'Cristopher', 'Rodríguez Fernández', 'crodriguez@gmail.com', 'Cris1204', '2025-09-19', 1);
+
+INSERT INTO tbl_grupos (codigo, nombre, descripcion, nivel, fecha_inicio, fecha_fin) VALUES
+('G001', 'Oruguitas', 'Niños de 1 año en adelante.', 'Pre-materno', '2025-01-05', '2025-11-29');
+
+INSERT INTO tbl_programas (nombre, descripcion, tipo) VALUES
+('PANI', 'Institución autónoma que protege y garantiza los derechos de la niñez y adolescencia en Costa Rica.', 'Público');
+
+INSERT INTO tbl_beneficiarios (identificacion, nombre, apellidos, fecha_nacimiento, edad, alergias, medicamentos, fecha_ingreso, encargado, contacto, pago, id_programa, id_grupo) VALUES
+('403000564', 'Santiago', 'Hidalgo Molina', '2012-12-20', 13, 'Asma', 'Bomba de Salbutamol', '2023-05-08', 'Katherine Molina Sánchez', '8612-1617', 40000.00, 1, 1);

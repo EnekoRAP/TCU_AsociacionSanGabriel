@@ -1,24 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+session_start();
+if (!isset($_SESSION['id_rol']) || ($_SESSION['id_rol'] != 1 && $_SESSION['id_rol'] != 2)) {
+    header("Location: ../login.php");
+    exit();
+}
 
-    <title>TCU_AsociacionSanGabriel</title>
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
 
-    <link href="../../Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-    <link href="../../Assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../../Assets/css/customStyles/crearUsuarioStyle.css" rel="stylesheet">
-</head>
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+if ($id <=0)
+    exit("ID Inválido");
 
-<body>
-    
-</body>
+$query = "DELETE FROM tbl_beneficiarios WHERE id_beneficiario = ?";
+$stmt = $cn->prepare($query);
+$stmt->bind_param("i", $id);
 
-</html>
+if ($stmt->execute()) {
+    cerrarConexion($cn);
+    echo '<script>
+            alert("Beneficiario eliminado correctamente.");
+            window.location.href = "listaBeneficiarios.php";
+          </script>';
+    exit;
+} else {
+    $error = $stmt->error;
+    cerrarConexion($cn);
+    exit("Error al eliminar: $error");
+}
+?>

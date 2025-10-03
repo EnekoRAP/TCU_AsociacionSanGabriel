@@ -1,3 +1,57 @@
+<?php
+require_once("../../Config/dbconnection.php");
+$cn = abrirConexion();
+
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+if ($id <= 0)
+    exit("ID Inválido");
+
+$error = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $codigo = trim($_POST['codigo'] ?? '');
+    $nombre = trim($_POST['nombre'] ?? '');
+    $descripcion = trim($_POST['descripcion'] ?? '');
+    $nivel = trim($_POST['nivel'] ?? '');
+    $fechaI = $_POST['fecha_inicio'] ?? null;
+    $fechaF = $_POST['fecha_fin'] ?? null;
+    $estado = isset($_POST['estado']) ? 1 : 0;
+
+    if ($fechaI && $fechaF && $fechaI > $fechaF) {
+        $error = "La fecha de inicio no puede ser mayor que la fecha de fin.";
+    }
+
+    if (!$error) {
+        $query = "UPDATE tbl_grupos
+                  SET codigo = ?, nombre = ?, descripcion = ?, nivel = ?, fecha_inicio = ?, fecha_fin = ?, estado = ?
+                  WHERE id_grupo = ?";
+        $stmt = $cn->prepare($query);
+        $stmt->bind_param("ssssssii", $codigo, $nombre, $descripcion, $nivel, $fechaI, $fechaF, $estado, $id);
+
+        if ($stmt->execute()) {
+            echo '<script>
+                    alert("El grupo se actualizó correctamente.");
+                    window.location.href = "listaGrupos.php";
+                  </script>';
+            exit;
+        } else {
+            $error = "Error al actualizar: " . $stmt->error;
+        }
+    }
+}
+
+$stmt = $cn->prepare("SELECT id_grupo, codigo, nombre, descripcion, nivel, fecha_inicio, fecha_fin, estado
+                      FROM tbl_grupos WHERE id_grupo = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$res = $stmt->get_result();
+$grupo = $res->fetch_assoc();
+if (!$grupo)
+    exit("Grupo no encontrado.");
+
+cerrarConexion($cn);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +71,8 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light px-4">
-        <a class="navbar-brand" href="../Home/home.php">
-            <img src="../../Assets/img/logo.png" alt="SANGABRIEL Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                
-                <li class="nav-item"><a class="nav-link" href="../Beneficiarios/listaBeneficiarios.php">Beneficiarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Grupos/listaGrupos.php">Grupos</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Programas/listaProgramas.php">Programas</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Usuarios/listaUsuarios.php">Usuarios</a></li>
-                <li class="nav-item"><a class="nav-link" href="../Extras/soporte.php">Soporte</a></li>
-
-            </ul>
-        </div>
+    <nav>
+        <?php include '../Layout/Navbars/navbar2.php' ?>
     </nav>
     
     <main>
@@ -44,28 +82,62 @@
                     <i class="fas fa-pen-to-square me-2"></i>Editar Grupo
                 </h3>
                 
-                <div class="alert alert-danger">Error</div>
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
 
                 <form method="POST">
-                    <input type="hidden" name="id_programa" value="">
+                    <input type="hidden" name="id_grupo" value="<?= (int) $grupo['id_grupo'] ?>">
                     
                     <div class="mb-3">
                         <label class="form-label">Código</label>
-                        <input type="text" name="codigo" class="form-control" value="" required>
+                        <input type="text" name="codigo" class="form-control" value="<?= htmlspecialchars($grupo['codigo']) ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" value="" required>
+                        <input type="text" name="nombre" class="form-control" value="<?= htmlspecialchars($grupo['nombre']) ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Descripción</label>
-                        <textarea name="descripcion" class="form-control" rows="4" required></textarea>
+                        <textarea name="descripcion" class="form-control" rows="4"
+                            required><?= htmlspecialchars($grupo['descripcion']) ?></textarea>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Nivel</label>
+                            <select name="nivel" class="form-select" required>
+                                <option value="">Seleccione nivel</option>
+                                <option value="Pre-materno" <?= $grupo['nivel'] == 'Pre-materno' ? 'selected' : '' ?>>
+                                    Pre-materno
+                                </option>
+                                <option value="Materno" <?= $grupo['nivel'] == 'Materno' ? 'selected' : '' ?>>
+                                    Materno
+                                </option>
+                                <option value="Kinder" <?= $grupo['nivel'] == 'Kinder' ? 'selected' : '' ?>>
+                                    Kinder
+                                </option>
+                                <option value="Primaria" <?= $grupo['nivel'] == 'Primaria' ? 'selected' : '' ?>>
+                                    Primaria
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha de Ingreso</label>
+                            <input type="date" name="fecha_inicio" class="form-control"
+                                value="<?= htmlspecialchars($grupo['fecha_inicio']) ?>">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha de Salida</label>
+                            <input type="date" name="fecha_fin" class="form-control"
+                                value="<?= htmlspecialchars($grupo['fecha_fin']) ?>">
+                        </div>
                     </div>
 
                     <div class="form-check form-switch mt-3">
-                        <input class="form-check-input" type="checkbox" id="estado" name="estado">
+                        <input class="form-check-input" type="checkbox" id="estado" name="estado" <?= $grupo['estado'] ? 'checked' : '' ?>>
                         <label class="form-check-label" for="estado">Activo</label>
                     </div>
 
@@ -73,7 +145,7 @@
                         <button class="btn btn-success" type="submit">
                             <i class="fa-solid fa-floppy-disk me-1"></i> Guardar
                         </button>
-                        <a class="btn btn-secondary" href="../Grupos/listaGrupos.php">
+                        <a class="btn btn-secondary" href="listaGrupos.php">
                             <i class="fa-solid fa-ban me-1"></i> Cancelar
                         </a>
                     </div>
@@ -83,13 +155,7 @@
     </main>
 
     <footer>
-        <p><strong>Provincia:</strong> Heredia </p>
-        <p><strong>Cantón:</strong> Santa Bárbara </p>
-        <p><strong>Distrito:</strong> Jesús </p>
-        <p><strong>Dirección:</strong> 150 metros al Sur del EBAIS de Birrí </p>
-        <p><strong>Teléfono:</strong> 8455 5224 </p>
-        <p><strong>Correo:</strong> arcangelgabri17@outlook.com </p>
-        <span>Copyright &copy; Asociación San Gabriel Formación y Cuido de Niños 2025</span>
+        <?php include '../Layout/footer.php' ?>
     </footer>
 
     <script src="../../Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
