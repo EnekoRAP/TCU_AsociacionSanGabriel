@@ -42,6 +42,8 @@ cerrarConexion($cn);
             
             <div class="mb-3 text-end">
                 <a href="agregarBeneficiario.php" class="btn btn-success">+ Agregar Beneficiario</a>
+                <a href="exportarBeneficiariosPDF.php" class="btn btn-danger ms-2">Descargar PDF</a>
+                <a href="exportarBeneficiariosExcel.php" class="btn btn-primary ms-2">Descargar Excel</a>
             </div>
             
             <div class="table-responsive">
