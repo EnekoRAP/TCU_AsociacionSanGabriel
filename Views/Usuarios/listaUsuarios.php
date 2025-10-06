@@ -78,7 +78,7 @@ cerrarConexion($cn);
                                 </tr>
                             <?php endwhile; ?>
                         <?php else: ?>
-                            <tr><td colspan="6" class="text-center">No hay usuarios registrados</td></tr>
+                            <tr><td colspan="8" class="text-center">No hay usuarios registrados</td></tr>
                             <?php endif; ?>
                     </tbody>
                 </table>

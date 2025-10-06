@@ -43,6 +43,8 @@ cerrarConexion($cn);
 
             <div class="mb-3 text-end">
                 <a href="../Grupos/agregarGrupo.php" class="btn btn-success">+ Agregar Grupo</a>
+                <a href="exportarGruposPDF.php" class="btn btn-danger ms-2">Descargar PDF</a>
+                <a href="exportarGruposExcel.php" class="btn btn-primary ms-2">Descargar Excel</a>
             </div>
 
             <div class="table-responsive">
@@ -88,7 +90,7 @@ cerrarConexion($cn);
                             <?php endwhile; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="9" class="text-center">Sin Grupos</td>
+                                <td colspan="8" class="text-center">Sin Grupos</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>

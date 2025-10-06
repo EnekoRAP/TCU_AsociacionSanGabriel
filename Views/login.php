@@ -32,28 +32,32 @@ if (isset($_GET['error'])) {
 <body>
 
     <div class="login-container">
-      <img src="../Assets/img/logo.png" alt="SANGABRIEL Logo">
-      <div class="form-title">Iniciar Sesión</div>
+        <img src="../Assets/img/logo.png" alt="SANGABRIEL Logo">
+        <div class="form-title">Iniciar Sesión</div>
     
-      <?php if (isset($_GET['error'])): ?>
-        <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
-      <?php endif; ?>
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
+        <?php endif; ?>
     
-      <form action="../Controllers/authenticationController.php" method="POST">
-        <input type="hidden" name="action" value="login">
-      
-        <div class="mb-3 text-start">
-          <label for="correo" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" name="correo" id="correo" placeholder="usuario@ejemplo.com" required>
-        </div>
-      
-        <div class="mb-3 text-start">
-          <label for="password" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" name="password" id="password" required>
-        </div>
-      
-        <button type="submit" class="btn btn-login w-100">Ingresar</button>
-      </form>
+        <form action="../Controllers/authenticationController.php" method="POST">
+            <input type="hidden" name="action" value="login">
+            
+            <div class="mb-3 text-start">
+                <label for="correo" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" name="correo" id="correo" placeholder="usuario@ejemplo.com" required>
+            </div>
+            
+            <div class="mb-3 text-start">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-login w-100">Ingresar</button>
+            
+            <div class="mt-4 small-text">
+                <a href="recuperarContrasenna.php" class="mt-5 text-center under">¿Olvidó su contraseña?</a>
+            </div>
+        </form>
     </div>
 
 </body>

@@ -43,6 +43,8 @@ cerrarConexion($cn);
 
             <div class="mb-3 text-end">
                 <a href="../Programas/agregarPrograma.php" class="btn btn-success">+ Agregar Programa</a>
+                <a href="exportarProgramasPDF.php" class="btn btn-danger ms-2">Descargar PDF</a>
+                <a href="exportarProgramasExcel.php" class="btn btn-primary ms-2">Descargar Excel</a>
             </div>
 
             <div class="table-responsive">
