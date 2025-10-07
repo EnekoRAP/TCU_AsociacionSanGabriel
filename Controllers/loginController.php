@@ -48,5 +48,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     header("Location: ../Views/login.php");
     exit();
 }
-
 ?>

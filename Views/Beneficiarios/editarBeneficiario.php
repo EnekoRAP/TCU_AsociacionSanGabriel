@@ -57,6 +57,7 @@ $grupos = $cn->query("SELECT id_grupo, nombre FROM tbl_grupos");
 
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,13 +121,13 @@ $grupos = $cn->query("SELECT id_grupo, nombre FROM tbl_grupos");
                 <div class="mb-3">
                     <label class="form-label">Alergias</label>
                     <input type="text" name="alergias" class="form-control" 
-                        value="<?= htmlspecialchars($beneficiario['alergias']) ?>" required>
+                        value="<?= htmlspecialchars($beneficiario['alergias']) ?>">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Medicamentos</label>
                     <input type="text" name="medicamentos" class="form-control" 
-                        value="<?= htmlspecialchars($beneficiario['medicamentos']) ?>" required>
+                        value="<?= htmlspecialchars($beneficiario['medicamentos']) ?>">
                 </div>
 
                 <div class="mb-3">

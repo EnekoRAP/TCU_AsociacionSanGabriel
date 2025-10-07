@@ -7,8 +7,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $cn = abrirConexion();
 
-$query = "SELECT b.identificacion, b.nombre, b.apellidos, b.fecha_nacimiento, b.edad, b.alergias, b.medicamentos, b.fecha_ingreso, b.encargado, b.contacto, b.pago, 
-          p.nombre AS nombre_programa, g.nombre AS nombre_grupo
+$query = "SELECT b.identificacion, b.nombre, b.apellidos, b.fecha_nacimiento, b.edad, b.alergias, b.medicamentos, b.fecha_ingreso, b.encargado, b.contacto, b.pago, p.nombre AS nombre_programa, g.nombre AS nombre_grupo
           FROM tbl_beneficiarios b
           LEFT JOIN tbl_programas p ON b.id_programa = p.id_programa
           LEFT JOIN tbl_grupos g ON b.id_grupo = g.id_grupo
