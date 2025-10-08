@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2025 a las 19:43:14
+-- Tiempo de generación: 08-10-2025 a las 19:54:50
 -- Versión del servidor: 8.0.35
 -- Versión de PHP: 8.0.30
 
@@ -64,21 +64,21 @@ CREATE TABLE `tbl_beneficiarios` (
 --
 
 INSERT INTO `tbl_beneficiarios` (`id_beneficiario`, `identificacion`, `nombre`, `apellidos`, `fecha_nacimiento`, `edad`, `alergias`, `medicamentos`, `fecha_ingreso`, `encargado`, `contacto`, `pago`, `id_programa`, `id_grupo`) VALUES
-(1, '403040729', 'Jacob', 'Calderón Unfried', '2013-11-08', 11, 'huevo', 'no', '2022-04-01', 'Griselda Guitta', '6091-2053', 0.00, 2, 1),
-(2, '403240639', 'Elian', 'Lépiz Ortuño', '2017-10-03', 8, 'rinitis-clima', 'no', '2019-11-01', 'Lilliam Ortuño Alfaro', '7238-78-53', 15000.00, 1, 1),
-(3, '403110706', 'Ethan', 'Sánchez Raiith', '2015-03-27', 10, 'no', 'amoxicilina', '2020-10-01', 'Maryelli Raitth Guzman', '8303-9230', 0.00, 2, 1),
-(4, '403110446', 'María Celeste', 'Montero Lara', '2015-03-21', 10, 'conejos y hormigas', 'no', '2020-06-11', 'Ashly Lara Salas', '7032-2270', 2666.00, 1, 1),
-(5, '403000564', 'Santiago', 'Hidalgo Molina', '2012-12-20', 12, 'asma', 'Bomba de Salbutamol', '2023-05-08', 'Katherine Molina Sánchez', '8612-1617', 40000.00, 3, 1),
-(6, '403320425', 'Alana', 'Hidalgo Molina', '2019-05-08', 6, 'Tomate, Canela', 'no', '2023-05-08', 'Katherine Molina Sánchez', '8612-1617', 40000.00, 3, 1),
-(7, '403280633', 'Saul Andrés', 'Cordero Hernandéz', '2018-07-27', 7, 'salsa de tomate en la piel', 'no', '2023-01-12', 'Juliana Hernandez Orozco', '8580-0899', 5000.00, 1, 1),
-(8, '403020337', 'Genesis', 'Araya Araya', '2013-05-18', 12, 'no', 'no', '2022-04-01', 'Yuliana Araya Brenes', '6131-9057', 0.00, 1, 1),
-(9, '403150839', 'Jeikol', 'Araya Araya', '2016-01-12', 9, 'no', 'no', '2022-04-01', 'Yuliana Araya Brenes', '6131-9057', 0.00, 1, 1),
-(10, '403260150', 'Samantha', 'Bermúdez Guadamuz', '2018-01-05', 7, 'no', 'no', '2022-08-08', 'Carmen Guadamuz Bonilla', '7131-5990', 0.00, 2, 1),
-(11, '403070858', 'Fabrizzio', 'Castro Leiva', '2014-06-30', 11, 'no', 'no', '2019-11-01', 'Eneida Tatiana Leiva Sánchez', '7199-3850', 0.00, 2, 1),
-(12, '403150984', 'Danna', 'Castro Witter', '2016-01-15', 9, 'no', 'no', '2020-06-11', 'Stefanny Witter Vargas', '8324-0659', 4000.00, 1, 1),
-(13, '403320726', 'Ian', 'Chavarría Sandí', '2019-05-03', 6, 'no', 'no', '2019-10-01', 'Kattia Sandí Araya', '8862-1134', 10000.00, 1, 1),
-(14, '403270102', 'Sebastián', 'Chavarría Sandí', '2018-04-24', 7, 'no', 'no', '2020-03-02', 'Kattia Sandí Araya', '8862-1134', 10000.00, 1, 1),
-(15, '210080388', 'Isaac', 'Chaves Solano', '2016-01-26', 9, 'no', 'no', '2022-06-01', 'Marianela Solano Rodríguez', '8411-0707', 0.00, 1, 1);
+(1, '403040729', 'Jacob', 'Calderón Unfried', '2013-11-08', 11, 'huevo', 'no', '2022-04-01', 'Griselda Guitta', '6091-2053', 0.00, 2, 4),
+(2, '403240639', 'Elian', 'Lépiz Ortuño', '2017-10-03', 8, 'rinitis-clima', 'no', '2019-11-01', 'Lilliam Ortuño Alfaro', '7238-78-53', 15000.00, 1, 4),
+(3, '403110706', 'Ethan', 'Sánchez Raiith', '2015-03-27', 10, 'no', 'amoxicilina', '2020-10-01', 'Maryelli Raitth Guzman', '8303-9230', 0.00, 2, 4),
+(4, '403110446', 'María Celeste', 'Montero Lara', '2015-03-21', 10, 'conejos y hormigas', 'no', '2020-06-11', 'Ashly Lara Salas', '7032-2270', 2666.00, 1, 4),
+(5, '403000564', 'Santiago', 'Hidalgo Molina', '2012-12-20', 12, 'asma', 'Bomba de Salbutamol', '2023-05-08', 'Katherine Molina Sánchez', '8612-1617', 40000.00, 3, 4),
+(6, '403320425', 'Alana', 'Hidalgo Molina', '2019-05-08', 6, 'Tomate, Canela', 'no', '2023-05-08', 'Katherine Molina Sánchez', '8612-1617', 40000.00, 3, 3),
+(7, '403280633', 'Saul Andrés', 'Cordero Hernandéz', '2018-07-27', 7, 'salsa de tomate en la piel', 'no', '2023-01-12', 'Juliana Hernandez Orozco', '8580-0899', 5000.00, 1, 4),
+(8, '403020337', 'Genesis', 'Araya Araya', '2013-05-18', 12, 'no', 'no', '2022-04-01', 'Yuliana Araya Brenes', '6131-9057', 0.00, 1, 4),
+(9, '403150839', 'Jeikol', 'Araya Araya', '2016-01-12', 9, 'no', 'no', '2022-04-01', 'Yuliana Araya Brenes', '6131-9057', 0.00, 1, 4),
+(10, '403260150', 'Samantha', 'Bermúdez Guadamuz', '2018-01-05', 7, 'no', 'no', '2022-08-08', 'Carmen Guadamuz Bonilla', '7131-5990', 0.00, 2, 4),
+(11, '403070858', 'Fabrizzio', 'Castro Leiva', '2014-06-30', 11, 'no', 'no', '2019-11-01', 'Eneida Tatiana Leiva Sánchez', '7199-3850', 0.00, 2, 4),
+(12, '403150984', 'Danna', 'Castro Witter', '2016-01-15', 9, 'no', 'no', '2020-06-11', 'Stefanny Witter Vargas', '8324-0659', 4000.00, 1, 4),
+(13, '403320726', 'Ian', 'Chavarría Sandí', '2019-05-03', 6, 'no', 'no', '2019-10-01', 'Kattia Sandí Araya', '8862-1134', 10000.00, 1, 3),
+(14, '403270102', 'Sebastián', 'Chavarría Sandí', '2018-04-24', 7, 'no', 'no', '2020-03-02', 'Kattia Sandí Araya', '8862-1134', 10000.00, 1, 4),
+(15, '210080388', 'Isaac', 'Chaves Solano', '2016-01-26', 9, 'no', 'no', '2022-06-01', 'Marianela Solano Rodríguez', '8411-0707', 0.00, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -172,8 +172,8 @@ CREATE TABLE `tbl_usuarios` (
 --
 
 INSERT INTO `tbl_usuarios` (`id_usuario`, `identificacion`, `nombre`, `apellidos`, `correo`, `contrasenna`, `fecha_registro`, `id_rol`, `estado`) VALUES
-(1, '208600279', 'Cristopher', 'Rodríguez Fernández', 'crodriguez@gmail.com', 'Cris1204', '2025-10-08 11:40:44', 1, 1),
-(2, '304700478', 'Tifanny', 'Miranda Morales', 'tmiranda@gmail.com', 'Tif0599', '2025-10-08 11:40:44', 2, 1);
+(1, '208600279', 'Cristopher', 'Rodríguez Fernández', 'crodriguez@gmail.com', 'Cris1204', '2025-10-08 11:54:40', 1, 1),
+(2, '304700478', 'Tifanny', 'Miranda Morales', 'tmiranda@gmail.com', 'Tif0599', '2025-10-08 11:54:40', 2, 1);
 
 --
 -- Índices para tablas volcadas

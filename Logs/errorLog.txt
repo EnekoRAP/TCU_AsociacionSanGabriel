@@ -1,1 +1,2 @@
 [2025-10-07 12:45:06] [WARN] Fallo en la autenticación: Usuario o clave inválida | Módulo: login.php | Usuario: Invitado
+[2025-10-08 11:49:59] [WARN] Fallo en la autenticación: Usuario o clave inválida | Módulo: login.php | Usuario: Invitado
