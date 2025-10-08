@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS bd_sangabriel /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE bd_sangabriel;
+CREATE DATABASE  IF NOT EXISTS 'bd_sangabriel' /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE 'bd_sangabriel';
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: bd_sangabriel
