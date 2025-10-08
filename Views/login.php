@@ -11,7 +11,6 @@ if (isset($_SESSION["usuarioID"]) && isset($_SESSION["id_rol"])) {
 if (isset($_GET['error'])) {
     registrarError("Fallo en la autenticación: " . $_GET['error'], "WARN");
 }
-
 ?>
 
 <!DOCTYPE html>

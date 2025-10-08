@@ -1,5 +1,4 @@
 <?php
-
 function abrirConexion() {
     $host = "localhost";
     $user = "root";
@@ -22,5 +21,4 @@ function cerrarConexion($conn) {
         $conn->close();
     }
 }
-
 ?>
