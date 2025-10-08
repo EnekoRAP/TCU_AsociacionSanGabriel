@@ -51,8 +51,8 @@ The application will allow administrative staff to manage users, beneficiaries, 
 To run this project locally, you'll need to have the following installed:
 
 - 🌍 A web browser (e.g., Firefox, Google Chrome, Microsoft Edge)
-- 🛢️ [MySQL](https://www.mysql.com/products/workbench/)
-- 💻 [VSCode](https://code.visualstudio.com/)
+- 🛢️ [MySQL](https://www.mysql.com/products/workbench/) (database manager)
+- 💻 [VSCode](https://code.visualstudio.com/) (open source code editor)
 - 🚀 [XAMPP](https://www.apachefriends.org/es/index.html) (includes PHP, MySQL, and Apache)
 
 ### 🪜 Setup Instructions
