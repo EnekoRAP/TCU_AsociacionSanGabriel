@@ -27,5 +27,4 @@ try {
     header('Location: ../Views/login.php?error=Error+interno');
     exit;
 }
-
 ?>

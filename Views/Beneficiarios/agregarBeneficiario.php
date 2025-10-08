@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($identificacion === "" || $nombre === "" || $apellidos === "" || $fecha_nacimiento === "" || $edad <= 0 || $fecha_ingreso === "" || $encargado === "" || $contacto === "" || $programaSeleccionado <= 0 || $grupoSeleccionado <= 0) {
         $mensajeError = "Todos los campos son obligatorios.";
     } else {
-        $query = "INSERT INTO tbl_beneficiarios (identificacion, nombre, apellidos, fecha_nacimiento, edad, alergias, medicamentos, fecha_ingreso, encargado, contacto, pago, id_programa, id_grupo)
+        $query = "INSERT INTO tbl_beneficiarios 
+                  (identificacion, nombre, apellidos, fecha_nacimiento, edad, alergias, medicamentos, fecha_ingreso, encargado, contacto, pago, id_programa, id_grupo)
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $cn->prepare($query);
         $stmt->bind_param("ssssisssssiii", $identificacion, $nombre, $apellidos, $fecha_nacimiento, $edad, $alergias, $medicamentos, $fecha_ingreso, $encargado, $contacto, $pago, $programaSeleccionado, $grupoSeleccionado);
@@ -115,12 +116,12 @@ $grupos = $cn->query("SELECT id_grupo, nombre FROM tbl_grupos");
 
                 <div class="mb-3">
                     <label class="form-label">Alergias</label>
-                    <input type="text" name="alergias" class="form-control" value="<?= htmlspecialchars($alergias) ?>" required>
+                    <input type="text" name="alergias" class="form-control" value="<?= htmlspecialchars($alergias) ?>">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Medicamentos</label>
-                    <input type="text" name="medicamentos" class="form-control" value="<?= htmlspecialchars($medicamentos) ?>" required>
+                    <input type="text" name="medicamentos" class="form-control" value="<?= htmlspecialchars($medicamentos) ?>">
                 </div>
 
                 <div class="mb-3">
@@ -140,7 +141,7 @@ $grupos = $cn->query("SELECT id_grupo, nombre FROM tbl_grupos");
 
                 <div class="mb-3">
                     <label class="form-label">Pago</label>
-                    <input type="number" name="pago" class="form-control" value="<?= htmlspecialchars($pago) ?>" required>
+                    <input type="number" name="pago" class="form-control" value="<?= htmlspecialchars($pago) ?>">
                 </div>
 
                 <div class="mb-3">

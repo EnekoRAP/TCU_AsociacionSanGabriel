@@ -11,11 +11,11 @@ if (isset($_SESSION["usuarioID"]) && isset($_SESSION["id_rol"])) {
 if (isset($_GET['error'])) {
     registrarError("Fallo en la autenticación: " . $_GET['error'], "WARN");
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

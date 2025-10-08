@@ -1,5 +1,4 @@
 <?php
-
 function registrarError($mensaje, $nivel = "ERROR", $modulo = null, $usuario = null) {
     date_default_timezone_set("America/Costa_Rica");
 
@@ -22,5 +21,4 @@ function registrarError($mensaje, $nivel = "ERROR", $modulo = null, $usuario = n
     $ruta = __DIR__ . "/../Logs/errorLog.txt";
     file_put_contents($ruta, $cadena, FILE_APPEND);
 }
-
 ?>

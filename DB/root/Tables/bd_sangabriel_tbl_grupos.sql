@@ -32,7 +32,7 @@ CREATE TABLE `tbl_grupos` (
   `fecha_fin` date DEFAULT NULL,
   `estado` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id_grupo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `tbl_grupos` (
 
 LOCK TABLES `tbl_grupos` WRITE;
 /*!40000 ALTER TABLE `tbl_grupos` DISABLE KEYS */;
-INSERT INTO `tbl_grupos` VALUES (1,'G001','Oruguitas','Niños de 1 año en adelante.','Pre-materno','2025-01-05','2025-11-29',1);
+INSERT INTO `tbl_grupos` VALUES (1,'G001','Oruguitas','Niños recién nacidos hasta 1 año de edad.','Pre-materno','2025-01-03','2025-11-29',1),(2,'G002','Pollitos','Niños de 2 hasta 3 años de edad.','Materno','2025-01-04','2025-11-29',1),(3,'G003','Ovejitas','Niños de 4 hasta 6 años de edad.','Kinder','2025-01-05','2025-11-29',1),(4,'G004','Leones','Niños de 7 hasta 12 años de edad.','Primaria','2025-01-06','2025-11-29',1);
 /*!40000 ALTER TABLE `tbl_grupos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-04 18:04:18
+-- Dump completed on 2025-10-08 11:48:45
