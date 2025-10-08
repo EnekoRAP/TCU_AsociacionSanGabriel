@@ -6,6 +6,8 @@ The project is based on the knowledge acquired in courses on Web Application Des
 
 The application will allow administrative staff to manage users, beneficiaries, groups, and programs, in addition to providing a module for error logging and auditing, thus contributing to more efficient and organized administration.
 
+![TCU_AsociacionSanGabriel](Assets/img/fondo_README.jpg)
+
 ## 🧩 Features
 
 - 👥 **User Management**
