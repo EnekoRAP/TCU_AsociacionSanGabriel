@@ -141,7 +141,7 @@ $grupos = $cn->query("SELECT id_grupo, nombre FROM tbl_grupos");
 
                 <div class="mb-3">
                     <label class="form-label">Pago</label>
-                    <input type="number" name="pago" class="form-control" value="<?= htmlspecialchars($pago) ?>" required>
+                    <input type="number" name="pago" class="form-control" value="<?= htmlspecialchars($pago) ?>">
                 </div>
 
                 <div class="mb-3">

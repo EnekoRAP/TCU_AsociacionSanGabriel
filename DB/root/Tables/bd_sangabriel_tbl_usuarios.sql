@@ -37,7 +37,7 @@ CREATE TABLE `tbl_usuarios` (
   UNIQUE KEY `correo` (`correo`),
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `tbl_usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `tbl_roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,'208600279','Cristopher','Rodríguez Fernández','crodriguez@gmail.com','Cris1204','2025-09-19 00:00:00',1,1),(3,'647483','Brenda','Rojas Cortés','brojas@gmail.com','Bren2904','2025-10-03 05:48:29',2,1);
+INSERT INTO `tbl_usuarios` VALUES (1,'208600279','Cristopher','Rodríguez Fernández','crodriguez@gmail.com','Cris1204','2025-10-08 11:40:44',1,1),(2,'304700478','Tifanny','Miranda Morales','tmiranda@gmail.com','Tif0599','2025-10-08 11:40:44',2,1);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-04 18:04:18
+-- Dump completed on 2025-10-08 11:48:44

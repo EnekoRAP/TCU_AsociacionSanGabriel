@@ -73,7 +73,7 @@ CREATE TABLE `tbl_beneficiarios` (
   KEY `id_grupo` (`id_grupo`),
   CONSTRAINT `tbl_beneficiarios_ibfk_1` FOREIGN KEY (`id_programa`) REFERENCES `tbl_programas` (`id_programa`),
   CONSTRAINT `tbl_beneficiarios_ibfk_2` FOREIGN KEY (`id_grupo`) REFERENCES `tbl_grupos` (`id_grupo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `tbl_beneficiarios` (
 
 LOCK TABLES `tbl_beneficiarios` WRITE;
 /*!40000 ALTER TABLE `tbl_beneficiarios` DISABLE KEYS */;
-INSERT INTO `tbl_beneficiarios` VALUES (1,'403000564','Santiago','Hidalgo Molina','2012-12-20',13,'Asma','Bomba de Salbutamol','2023-05-08','Katherine Molina Sánchez','8612-1617',40000.00,1,1);
+INSERT INTO `tbl_beneficiarios` VALUES (1,'403040729','Jacob','Calderón Unfried','2013-11-08',11,'huevo','no','2022-04-01','Griselda Guitta','6091-2053',0.00,2,1),(2,'403240639','Elian','Lépiz Ortuño','2017-10-03',8,'rinitis-clima','no','2019-11-01','Lilliam Ortuño Alfaro','7238-78-53',15000.00,1,1),(3,'403110706','Ethan','Sánchez Raiith','2015-03-27',10,'no','amoxicilina','2020-10-01','Maryelli Raitth Guzman','8303-9230',0.00,2,1),(4,'403110446','María Celeste','Montero Lara','2015-03-21',10,'conejos y hormigas','no','2020-06-11','Ashly Lara Salas','7032-2270',2666.00,1,1),(5,'403000564','Santiago','Hidalgo Molina','2012-12-20',12,'asma','Bomba de Salbutamol','2023-05-08','Katherine Molina Sánchez','8612-1617',40000.00,3,1),(6,'403320425','Alana','Hidalgo Molina','2019-05-08',6,'Tomate, Canela','no','2023-05-08','Katherine Molina Sánchez','8612-1617',40000.00,3,1),(7,'403280633','Saul Andrés','Cordero Hernandéz','2018-07-27',7,'salsa de tomate en la piel','no','2023-01-12','Juliana Hernandez Orozco','8580-0899',5000.00,1,1),(8,'403020337','Genesis','Araya Araya','2013-05-18',12,'no','no','2022-04-01','Yuliana Araya Brenes','6131-9057',0.00,1,1),(9,'403150839','Jeikol','Araya Araya','2016-01-12',9,'no','no','2022-04-01','Yuliana Araya Brenes','6131-9057',0.00,1,1),(10,'403260150','Samantha','Bermúdez Guadamuz','2018-01-05',7,'no','no','2022-08-08','Carmen Guadamuz Bonilla','7131-5990',0.00,2,1),(11,'403070858','Fabrizzio','Castro Leiva','2014-06-30',11,'no','no','2019-11-01','Eneida Tatiana Leiva Sánchez','7199-3850',0.00,2,1),(12,'403150984','Danna','Castro Witter','2016-01-15',9,'no','no','2020-06-11','Stefanny Witter Vargas','8324-0659',4000.00,1,1),(13,'403320726','Ian','Chavarría Sandí','2019-05-03',6,'no','no','2019-10-01','Kattia Sandí Araya','8862-1134',10000.00,1,1),(14,'403270102','Sebastián','Chavarría Sandí','2018-04-24',7,'no','no','2020-03-02','Kattia Sandí Araya','8862-1134',10000.00,1,1),(15,'210080388','Isaac','Chaves Solano','2016-01-26',9,'no','no','2022-06-01','Marianela Solano Rodríguez','8411-0707',0.00,1,1);
 /*!40000 ALTER TABLE `tbl_beneficiarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `tbl_grupos` (
   `fecha_fin` date DEFAULT NULL,
   `estado` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id_grupo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `tbl_grupos` (
 
 LOCK TABLES `tbl_grupos` WRITE;
 /*!40000 ALTER TABLE `tbl_grupos` DISABLE KEYS */;
-INSERT INTO `tbl_grupos` VALUES (1,'G001','Oruguitas','Niños de 1 año en adelante.','Pre-materno','2025-01-05','2025-11-29',1);
+INSERT INTO `tbl_grupos` VALUES (1,'G001','Oruguitas','Niños recién nacidos hasta 1 año de edad.','Pre-materno','2025-01-03','2025-11-29',1),(2,'G002','Pollitos','Niños de 2 hasta 3 años de edad.','Materno','2025-01-04','2025-11-29',1),(3,'G003','Ovejitas','Niños de 4 hasta 6 años de edad.','Kinder','2025-01-05','2025-11-29',1),(4,'G004','Leones','Niños de 7 hasta 12 años de edad.','Primaria','2025-01-06','2025-11-29',1);
 /*!40000 ALTER TABLE `tbl_grupos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `tbl_programas` (
   `tipo` varchar(50) DEFAULT NULL,
   `estado` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id_programa`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `tbl_programas` (
 
 LOCK TABLES `tbl_programas` WRITE;
 /*!40000 ALTER TABLE `tbl_programas` DISABLE KEYS */;
-INSERT INTO `tbl_programas` VALUES (1,'PANI','Institución autónoma que protege y garantiza los derechos de la niñez y adolescencia en Costa Rica.','Público',1);
+INSERT INTO `tbl_programas` VALUES (1,'PANI','Institución autónoma que protege y garantiza los derechos de la niñez y adolescencia en Costa Rica.','Público',1),(2,'IMAS','Institución que promueve el bienestar social y combatir la pobreza mediante programas de ayuda económica y social en Costa Rica.','Público',1),(3,'Privado','Programa financiado y administrado por entidades particulares o fundaciones sin fines de lucro que brindan apoyo directo a la niñez y sus familias.','Privado',1);
 /*!40000 ALTER TABLE `tbl_programas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `tbl_usuarios` (
   UNIQUE KEY `correo` (`correo`),
   KEY `id_rol` (`id_rol`),
   CONSTRAINT `tbl_usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `tbl_roles` (`id_rol`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +198,7 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,'208600279','Cristopher','Rodríguez Fernández','crodriguez@gmail.com','Cris1204','2025-09-19 00:00:00',1,1),(3,'647483','Brenda','Rojas Cortés','brojas@gmail.com','Bren2904','2025-10-03 05:48:29',2,1);
+INSERT INTO `tbl_usuarios` VALUES (1,'208600279','Cristopher','Rodríguez Fernández','crodriguez@gmail.com','Cris1204','2025-10-08 11:40:44',1,1),(2,'304700478','Tifanny','Miranda Morales','tmiranda@gmail.com','Tif0599','2025-10-08 11:40:44',2,1);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -211,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-04 18:01:07
+-- Dump completed on 2025-10-08 11:44:43
