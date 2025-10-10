@@ -15,7 +15,7 @@ The application will allow administrative staff to manage users, beneficiaries, 
     - 🔐 Role-based access control (Administrator, Master).
     - 🔑 Login and secure authentication system.
     - 📧 Password recovery via email with unique verification token.
-- 🧒 **Beneficiary Management**
+- 🧒🏻 **Beneficiary Management**
     - 🗂️ Registration and detailed profile management of beneficiaries.
     - 🧾 Assignment of beneficiaries to specific programs or groups.
     - 🔍 Search and filtering options for quick access to records.
@@ -25,19 +25,19 @@ The application will allow administrative staff to manage users, beneficiaries, 
     - 🏷️ Categorization by type and description.
     - 🔄 Status control (active/inactive).
     - 📊 Export functionality for reporting purposes.
-- 👨‍👩‍👧 **Group Management**
+- 👨🏻‍👩🏻‍👧🏻 **Group Management**
     - 👥 Creation of groups to organize beneficiaries.
     - 🔗 Linking of groups with programs and responsible staff.
     - 📋 Listing, filtering, and export of group data.
 - 🧾 **Audit and Error Logging**
-    - 🕵️ Internal module to track user actions and system events.
+    - 🕵🏻 Internal module to track user actions and system events.
     - ⚠️ Error logging and history for debugging and transparency.
     - 📁 Administrative access to system reports.
 
-## 🖥️ Technologies Used
+## 🛠️ Technologies Used
 
-- 💅 **Frontend**: CSS, HTML, Javascript, SCSS
-- ⚙️ **Backend**: PHP
+- 🎨 **Frontend**: CSS, HTML, Javascript, SCSS
+- 💻 **Backend**: PHP
 - 🧱 **Framework**: Bootstrap
 - 📚 **Libraries**: dompdf, JQuery, PHPMailer, PhpSpreadsheet
 - 🗄️ **Database**: MySQL
@@ -55,7 +55,7 @@ To run this project locally, you'll need to have the following installed:
 - 💻 [VSCode](https://code.visualstudio.com/) (open source code editor)
 - 🚀 [XAMPP](https://www.apachefriends.org/es/index.html) (includes PHP, MySQL, and Apache)
 
-### 🪜 Setup Instructions
+### 🔧 Setup
 
 1. 📥 Clone the repository:
 
@@ -101,7 +101,7 @@ To run this project locally, you'll need to have the following installed:
     ?>
    ```
    
-   💡 Ensure the MySQL credentials and database name match your local setup.
+   Ensure the MySQL credentials and database name match your local setup.
 
 4. ▶️ Start the XAMPP server:
 
@@ -111,7 +111,7 @@ To run this project locally, you'll need to have the following installed:
 
 > [!NOTE]
 > **Project Owner / Author** 🧑🏻‍💻  
-> - **Cristopher Rodríguez Fernández**  
-> - **Fidélitas University — TCU Project (2025)**  
-> - **San Gabriel Childcare and Training Association Information Software**
+> **Cristopher Rodríguez Fernández**  
+> **Fidélitas University | Computer Software Engineering — TCU Project (2025)**  
+> **San Gabriel Childcare and Training Association Information Software**
 ***
